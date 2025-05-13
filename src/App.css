@@ -3,6 +3,10 @@
   margin: 0 auto;
   text-align: center;
 }
+html, body {
+  overflow-x: hidden;
+}
+
 
 .logo {
   height: 6em;
@@ -56,4 +60,33 @@
 
 .animate-push {
   animation: push 1s ease-in-out infinite;
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: scroll-marquee 30s linear infinite;
 }
