@@ -4,6 +4,9 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import './App.css'
 import Skills from './components/Skills'
+import Projects from './components/Projects'
+import Certifications from './components/Certifications'
+import ExperienceMap from './components/ExeperienceCard'
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
       <Navbar />
       <Hero />
       <Skills />
+      <Projects/>
+      <Certifications/>
+      <ExperienceMap/>
       
       
     </>

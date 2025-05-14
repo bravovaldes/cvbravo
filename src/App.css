@@ -90,3 +90,38 @@ html, body {
   display: inline-flex;
   animation: scroll-marquee 30s linear infinite;
 }
+@keyframes glowing-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ring-glow-wrapper {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-glow-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(#10b981 0% 25%, transparent 25% 100%);
+  animation: glowing-ring 2s linear infinite;
+  z-index: 0;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
