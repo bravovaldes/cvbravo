@@ -16,7 +16,7 @@ export default function AvatarFlip() {
     <div className="flip-container w-40 h-40">
       <div className={`flipper ${flipped ? 'flipped' : ''}`}>
         <img src="/assets/profil.png" alt="Avatar"  className="w-64 mx-auto rounded-full shadow-[0_30px_60px_rgba(0,255,0,0.5)]" />
-        <img src="/assets/photo.png" alt="Photo réelle" className="back w-full h-full object-cover rounded-full" />
+        <img src="/assets/photo.jpg" alt="Photo réelle" className="back w-full h-full object-cover rounded-full" />
       </div>
     </div>
   )
