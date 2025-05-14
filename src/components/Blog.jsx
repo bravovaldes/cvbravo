@@ -21,13 +21,15 @@ const initialBlogs = [
 ];
 
 export default function BlogSection() {
+  const ITEMS_PER_PAGE = 3;
+
   const [blogs, setBlogs] = useState(initialBlogs);
+  const [currentPage, setCurrentPage] = useState(1);
   const [form, setForm] = useState({ title: '', content: '', author: '' });
   const [showModal, setShowModal] = useState(false);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  /* ---------- handlers ---------- */
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +42,16 @@ export default function BlogSection() {
     setBlogs([newBlog, ...blogs]);
     setForm({ title: '', content: '', author: '' });
     setShowModal(false);
+    setCurrentPage(1); // on revient à la première page
   };
+
+  /* ---------- pagination ---------- */
+  const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
+  const indexOfLast = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirst = indexOfLast - ITEMS_PER_PAGE;
+  const currentBlogs = blogs.slice(indexOfFirst, indexOfLast);
+
+  const goToPage = (page) => setCurrentPage(page);
 
   return (
     <section className="bg-white text-black py-20 px-6 relative">
@@ -48,6 +59,7 @@ export default function BlogSection() {
         <BookOpenText className="w-6 h-6 text-green-500" /> Blog collaboratif
       </h2>
 
+      {/* bouton "nouvel article" */}
       <div className="text-center mb-12">
         <button
           onClick={() => setShowModal(true)}
@@ -57,7 +69,7 @@ export default function BlogSection() {
         </button>
       </div>
 
-      {/* Modal formulaire */}
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
           <div className="bg-white text-black w-full max-w-xl rounded-xl shadow-lg p-6 relative animate-fade-in">
@@ -108,9 +120,9 @@ export default function BlogSection() {
         </div>
       )}
 
-      {/* Affichage des articles */}
+      {/* articles affichés pour la page courante */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {blogs.map((blog, index) => (
+        {currentBlogs.map((blog, index) => (
           <div
             key={index}
             className="bg-neutral-900 text-white p-5 rounded-xl shadow-lg flex flex-col justify-between hover:shadow-green-400/20 transition"
@@ -133,6 +145,53 @@ export default function BlogSection() {
           </div>
         ))}
       </div>
+
+      {/* ----------- Pagination ----------- */}
+      {totalPages > 1 && (
+        <div className="mt-14 flex justify-center items-center gap-2 text-sm">
+          <button
+            onClick={() => goToPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            className={`px-3 py-1 rounded-lg border ${
+              currentPage === 1
+                ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+                : 'border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition'
+            }`}
+          >
+            Précédent
+          </button>
+
+          {[...Array(totalPages)].map((_, i) => {
+            const page = i + 1;
+            const isActive = page === currentPage;
+            return (
+              <button
+                key={page}
+                onClick={() => goToPage(page)}
+                className={`w-9 h-9 rounded-lg border ${
+                  isActive
+                    ? 'bg-green-600 text-white border-green-600'
+                    : 'border-gray-300 text-gray-600 hover:bg-green-100'
+                }`}
+              >
+                {page}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            className={`px-3 py-1 rounded-lg border ${
+              currentPage === totalPages
+                ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+                : 'border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition'
+            }`}
+          >
+            Suivant
+          </button>
+        </div>
+      )}
     </section>
   );
 }

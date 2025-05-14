@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# 🛡️ Fichiers d'environnement (jamais versionnés)
+.env
+.env.*

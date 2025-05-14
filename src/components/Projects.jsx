@@ -1,3 +1,14 @@
+import {
+  Download,
+  Star,
+  MessageCircle,
+  Pen,
+  Globe,
+  Github,
+  ExternalLink,
+  Play
+} from 'lucide-react';
+
 const projects = [
   {
     title: 'AgriPoule',
@@ -48,70 +59,112 @@ const projects = [
       live: 'https://blog-api-demo.netlify.app'
     }
   },
-  
-]
+];
+
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-white text-black py-20 px-4">
-      <h2 className="text-3xl font-bold text-green-600 text-center mb-12">PROJETS</h2>
+    <section id="projects" className="bg-white text-white py-5 px-4">
+      <h2 className="text-3xl font-bold text-green-600 text-center mb-12 uppercase">
+        Mes Projets
+      </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      {/* grille : centrée en largeur + items centrés dans leur cellule */}
+      <div className="grid justify-center justify-items-center
+                      grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+                      gap-4 sm:gap-5 max-w-7xl mx-auto">
         {projects.map((project, index) => (
-          <div key={index} className="bg-neutral-800 rounded-xl shadow-lg p-3 hover:shadow-green-400/20 transition h-full flex flex-col justify-between">
+          <div
+            key={index}
+            className="w-[280px] sm:w-auto bg-[#1a1c23] border
+                       rounded-2xl overflow-hidden shadow-md
+                       hover:shadow-green-500/20 transition duration-300
+                       flex flex-col"
+          >
             <img
               src={`/assets/${project.image}`}
               alt={project.title}
-              className="w-full h-40 object-contain mb-4 rounded bg-white"
+              className="w-full h-36 sm:h-48 object-cover"
             />
-            <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-            <p className="text-sm text-gray-400 mb-4">{project.description}</p>
 
-            <div className="flex flex-wrap gap-2 mb-4 text-sm text-green-400">
-              {project.stack.map((tech, i) => (
-                <span key={i} className="bg-green-900/20 px-2 py-1 rounded">{tech}</span>
-              ))}
-            </div>
+            <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-green-400 mb-2">
+                  {project.title}
+                </h3>
 
-            {project.downloads && <p className="text-sm text-gray-300 mb-1">📥 {project.downloads}</p>}
-            {project.stars && <p className="text-sm text-gray-300 mb-1">⭐ {project.stars}</p>}
-            {project.rating && <p className="text-sm text-gray-300 mb-1">💬 {project.rating}</p>}
-            {project.posts && <p className="text-sm text-gray-300 mb-1">📝 {project.posts}</p>}
+                <p className="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                  {project.description}
+                </p>
 
-            <div className="mt-3 flex gap-2 justify-between">
-              <a
-                href={project.links.demo}
-                className="px-4 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700 transition"
-              >
-                Démo
-              </a>
-              <a
-                href={project.links.github}
-                className="px-4 py-1 text-xs bg-white text-green-700 font-medium rounded hover:bg-gray-100 transition"
-              >
-                GitHub
-              </a>
-              <a
-                href={project.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-1 text-xs bg-green-700 text-white font-medium rounded hover:bg-green-600 transition"
-              >
-                Voir en ligne
-              </a>
+                <div className="flex flex-wrap gap-2 mb-4 text-[11px] sm:text-xs">
+                  {project.stack.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="bg-green-800/30 text-green-300 px-2 py-[2px] sm:px-3 sm:py-1 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {project.downloads && (
+                  <p className="flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs text-gray-400 mb-[2px]">
+                    <Download size={12} /> {project.downloads}
+                  </p>
+                )}
+                {project.stars && (
+                  <p className="flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs text-gray-400 mb-[2px]">
+                    <Star size={12} /> {project.stars}
+                  </p>
+                )}
+                {project.rating && (
+                  <p className="flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs text-gray-400 mb-[2px]">
+                    <MessageCircle size={12} /> {project.rating}
+                  </p>
+                )}
+                {project.posts && (
+                  <p className="flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs text-gray-400 mb-[2px]">
+                    <Pen size={12} /> {project.posts}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-4 flex justify-between items-center gap-1 text-[11px] sm:text-sm">
+                <a
+                  href={project.links.demo}
+                  className="bg-green-600 text-white px-0 py-1 rounded hover:bg-green-700 transition flex items-center gap-1 sm:gap-2"
+                >
+                  <Play size={12} /> Démo
+                </a>
+                <a
+                  href={project.links.github}
+                  className="border border-green-500 text-green-400 px-2 sm:px-3 py-1 rounded hover:bg-green-500 hover:text-white transition flex items-center gap-1 sm:gap-2"
+                >
+                  <Github size={12} /> GitHub
+                </a>
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-green-700 text-white px-2 sm:px-3 py-1 rounded hover:bg-green-600 transition flex items-center gap-1 sm:gap-2"
+                >
+                  <Globe size={12} /> En ligne
+                </a>
+              </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-8 text-center">
-      <a
-        href="#"
-        className="inline-block px-6 py-2 text-sm bg-green-600 text-white rounded-full hover:bg-green-700 transition"
-      >
-        Voir plus de projets
-      </a>
-    </div>
 
+      <div className="mt-12 text-center">
+        <a
+          href="#"
+          className="inline-block px-6 py-2 text-sm bg-green-600 text-white rounded-full hover:bg-green-700 transition"
+        >
+          Voir plus de projets
+        </a>
+      </div>
     </section>
-  )
+  );
 }

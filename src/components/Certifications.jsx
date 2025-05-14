@@ -79,19 +79,19 @@ export default function Certifications() {
             className="bg-neutral-100 border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between"
           >
             {/* En-tête */}
-            <div className="flex items-center gap-4 mb-4">
-            <div className="ring-glow-wrapper">
-                <img
-                src={`/assets/${cert.logo}`}
-                alt={cert.title}
-                className="w-12 h-12 object-contain rounded-full bg-white"
-                />
-            </div>
-            <div>
-                <h3 className="text-base font-semibold text-black">{cert.title}</h3>
-                <p className="text-sm text-gray-600">{cert.issuer} • {cert.date}</p>
-            </div>
-            </div>
+        <div className="flex items-center gap-4 mb-4">
+        <div className="ring-glow-wrapper">
+            <img
+            src={`/assets/${cert.logo}`}
+            alt={cert.title}
+            className="w-12 h-12 object-contain rounded-full bg-white"
+            />
+        </div>
+        <div>
+            <h3 className="text-base font-semibold text-black">{cert.title}</h3>
+            <p className="text-sm text-gray-600">{cert.issuer} • {cert.date}</p>
+        </div>
+        </div>
 
 
 

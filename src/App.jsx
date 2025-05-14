@@ -11,6 +11,7 @@ import DashboardFreelance from './components/DashboardFreelance'
 import BlogSection from './components/Blog'
 import ContactSection from './components/Contact'
 import FooterSection from './components/Footer'
+import FloatingChat from './components/FloatingChat'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <BlogSection/>
       <ContactSection/>
       <FooterSection/>
+      <FloatingChat/>
       
       
     </>
