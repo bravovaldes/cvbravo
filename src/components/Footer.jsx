@@ -17,14 +17,14 @@ export default function FooterSection() {
           <div className="flex flex-wrap gap-4 justify-center text-xs text-white">
             <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> React</span>
             <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> Tailwind CSS</span>
-            <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> Firebase</span>
-            <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> Node.js</span>
+            <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> PostgreSQL</span>
+            <span className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded-full"><Code className="w-4 h-4" /> ASP .NET</span>
           </div>
 
           {/* GitHub */}
           <div className="text-sm text-center md:text-right">
             <a
-              href="https://github.com/bravovaldes"
+              href="https://github.com/bravovalde"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-green-400 hover:underline"

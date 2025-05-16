@@ -68,8 +68,8 @@ export default function BlogSection() {
       alert('Le titre ne peut pas dépasser 25 caractères.');
       return;
     }
-    if (form.author.length > 15) {
-      alert("Le nom d'auteur ne peut pas dépasser 15 caractères.");
+    if (form.author.length > 10) {
+      alert("Le nom d'auteur ne peut pas dépasser 10 caractères.");
       return;
     }
     const newPost = {
@@ -95,8 +95,9 @@ export default function BlogSection() {
   }, []);
 
   return (
-    <section className="bg-white text-black py-20 px-6 relative">
-      <h2 className="text-3xl font-bold text-green-600 text-center mb-8 flex items-center justify-center gap-2">
+    <section className="bg-white text-black py-20 px-0 sm:px-6 lg:px-8 ">
+      <div className="max-w-7xl mx-auto ">
+         <h2 className="text-3xl font-bold text-green-600 text-center mb-8 flex items-center justify-center gap-2">
         <BookOpenText className="w-6 h-6 text-green-500" /> Blog collaboratif
       </h2>
 
@@ -159,11 +160,11 @@ export default function BlogSection() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl w-full mx-auto px-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full mx-auto px-4 ">
         {currentBlogs.map((blog, index) => (
           <div
             key={index}
-            className="bg-neutral-900 text-white p-5 rounded-xl shadow-lg flex flex-col justify-between hover:shadow-green-400/20 transition h-[300px] overflow-hidden"
+            className="bg-neutral-900  w-full text-white p-5 rounded-xl shadow-lg flex flex-col justify-between hover:shadow-green-400/20 transition  overflow-hidden"
           >
             <div className="flex flex-col justify-between h-full">
               <div>
@@ -186,7 +187,7 @@ export default function BlogSection() {
                 <div className="text-xs text-gray-400 flex flex-wrap justify-between items-center gap-y-2">
                   <div className="flex gap-2 items-center">
                     <User className="w-4 h-4" />
-                    {blog.author.length > 15 ? blog.author.slice(0, 15) + '...' : blog.author}
+                    {blog.author.length > 10 ? blog.author.slice(0, 10) + '...' : blog.author}
                   </div>
                   <div className="flex gap-2 items-center">
                     <Calendar className="w-4 h-4" /> {blog.date}
@@ -219,7 +220,7 @@ export default function BlogSection() {
       </div>
 
       {totalPages > 1 && (
-        <div className="mt-14 flex justify-center items-center gap-2 text-sm">
+        <div className="mt-14 flex justify-center items-center gap-1 text-sm px-1">
           <button
             onClick={() => goToPage(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
@@ -257,6 +258,7 @@ export default function BlogSection() {
           </button>
         </div>
       )}
+       </div>
     </section>
   );
 }

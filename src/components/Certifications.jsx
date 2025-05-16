@@ -1,65 +1,43 @@
 const certifications = [
   {
-    title: 'Azure Developer – Associate',
-    issuer: 'Microsoft',
-    date: 'Obtenue en mai 2024',
-    skills: ['Azure', 'DevOps', 'App Services'],
-    logo: 'azure.png',
-    actions: [
-      { label: 'Voir', url: '#' },
-      { label: 'Vérifier', url: '#' }
-    ]
-  },
-  {
-    title: 'Azure Developer – AI',
-    issuer: 'Microsoft',
-    date: 'Obtenue en mai 2024',
-    skills: ['Azure', 'DevOps', 'App Services'],
-    logo: 'azure.png',
-    actions: [
-      { label: 'Voir', url: '#' },
-      { label: 'Vérifier', url: '#' }
-    ]
-  },
-  {
     title: 'React.js Moderne',
     issuer: 'Udemy',
-    date: 'Obtenue en 2023',
+    date: 'Obtenue en 2025',
     skills: ['React', 'Hooks', 'Tailwind'],
     logo: 'react.svg',
     actions: [
-      { label: 'Voir', url: '#' },
-      { label: 'Vérifier', url: '#' }
-    ]
-  },
-  {
-    title: 'Développement Web avec ASP.NET',
-    issuer: 'Udemy',
-    date: 'Obtenue en 2023',
-    skills: ['ASP.NET', 'C#', 'Razor'],
-    logo: 'asp.jpg',
-    actions: [
-      { label: 'Voir', url: '#' },
-      { label: 'Vérifier', url: '#' }
+      { label: 'Voir', url: 'https://www.udemy.com/certificate/UC-1bc2fae8-7188-4fa7-b364-aa4e99d3d502/' },
+      { label: 'Vérifier', url: 'https://www.udemy.com/certificate/UC-1bc2fae8-7188-4fa7-b364-aa4e99d3d502/' }
     ]
   },
   {
     title: 'Kotlin & Jetpack Compose',
     issuer: 'Udemy',
-    date: 'Obtenue en 2023',
+    date: 'Obtenue en 2025',
     skills: ['Kotlin', 'Jetpack', 'UI Compose'],
     logo: 'kotlin.jpg',
     actions: [
-      { label: 'Voir', url: '#' },
-      { label: 'Vérifier', url: '#' }
+      { label: 'Voir', url: 'https://www.udemy.com/certificate/UC-5f6f43d3-988c-40fa-ace4-9bb62ee0953c/' },
+      { label: 'Vérifier', url: 'https://www.udemy.com/certificate/UC-5f6f43d3-988c-40fa-ace4-9bb62ee0953c/' }
     ]
   },
   {
     title: 'Machine Learning – Réseaux de Neurones',
     issuer: 'Udemy',
-    date: 'Obtenue en 2023',
+    date: 'Obtenue en 2025',
     skills: ['ML', 'Neural Nets', 'Deep Learning'],
     logo: 'tensorflow.png',
+    actions: [
+      { label: 'Voir', url: 'https://www.udemy.com/certificate/UC-fe925064-b61d-4223-99ab-a360a8521b04/' },
+      { label: 'Vérifier', url: 'https://www.udemy.com/certificate/UC-fe925064-b61d-4223-99ab-a360a8521b04/' }
+    ]
+  },
+   {
+    title: 'Azure Developer – Associate',
+    issuer: 'Microsoft',
+    date: 'Obtenue en mai 2025',
+    skills: ['Azure', 'DevOps', 'App Services'],
+    logo: 'azure.png',
     actions: [
       { label: 'Voir', url: '#' },
       { label: 'Vérifier', url: '#' }

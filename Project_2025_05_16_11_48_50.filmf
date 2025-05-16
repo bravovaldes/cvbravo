@@ -1,0 +1,68 @@
+{
+  "Version": "3.0",
+  "ProjectDisplayName": "Project_1",
+  "ProjectName": "Project_2025_05_16_11_48_50",
+  "ProjectToken": null,
+  "ProjectPath": null,
+  "ProjectFilePath": "C:\\Users\\Utilisateur\\bravo-portfolio\\Project_2025_05_16_11_48_50.filmf",
+  "ProjectFileToken": "{B510AC20-CBD3-4C10-AF6F-469C319998F9}",
+  "CreatedDate": "20250516T114850Z",
+  "ModifiedDate": "20250516T120634Z",
+  "ClipsFilter": "None",
+  "ClipsMuteFlag": false,
+  "Opening": {
+    "TransitionType": "None",
+    "Duration": 1.0
+  },
+  "Ending": {
+    "TransitionType": "None",
+    "Duration": 1.0
+  },
+  "Clips": [
+    {
+      "FilePath": "C:\\Users\\Utilisateur\\youtube.mp4",
+      "FileToken": "{B0AC0615-4ECD-4C54-ABA4-D57B13691757}",
+      "TrimStartTime": "00:00:00",
+      "TrimEndTime": "00:00:00",
+      "ImageClipDuration": "00:02:09.3439791",
+      "Volume": 1.0,
+      "MuteFlag": false,
+      "FadeInSeconds": 0.0,
+      "FadeOutSeconds": 0.0,
+      "Rotate": 0.0,
+      "Flip": 0,
+      "Filter": "None",
+      "Speed": 2.0,
+      "Color": null,
+      "Intro": null,
+      "Crop": null,
+      "CropMoveTo": null,
+      "Transform": {
+        "OffsetX": 0.0,
+        "OffsetY": 0.0,
+        "ScaleX": 1.0,
+        "ScaleY": 1.0,
+        "Rotate": 0.0
+      }
+    }
+  ],
+  "PicInPics": [],
+  "Transitions": [
+    {
+      "TransitionType": "None",
+      "Duration": 1.0
+    }
+  ],
+  "AudioTracks": [],
+  "TextTracks": [],
+  "SubtitleTrack": null,
+  "ProjectSetting": {
+    "TransitionSetting": {
+      "TransitionType": "None",
+      "Duration": 1.0
+    },
+    "ImageDurationSetting": "00:00:03",
+    "AspectRatioNumerator": 16,
+    "AspectRatioDenominator": 9
+  }
+}

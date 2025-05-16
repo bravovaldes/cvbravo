@@ -4,7 +4,7 @@ import { ArrowDownRight } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-white text-black pt-24 pb-16 px-6 scroll-mt-24">
+    <section id="home" className="bg-white text-black pt-24 pb-16 px-4 sm:px-6 scroll-mt-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-start text-left">
         
         {/* Partie gauche */}
@@ -13,20 +13,22 @@ export default function Hero() {
             Valdes Bravo Mezankou
           </h1>
           <h2 className="text-xl text-green-600 font-semibold animate-slide-in-left delay-200">
-            Développeur Full-Stack & Étudiant en IA
+            Développeur Full-Stack & Nouveau Diplômé en IA
           </h2>
           <p className="text-gray-700 animate-fade-in delay-300">
-            Actuellement en dernière session de Baccalauréat en Informatique (spécialisation IA) à l’UQAC.
-            Passionné par les mathématiques et la programmation, prêt à relever tous les défis !
+            Nouveau diplômé du Baccalauréat en Informatique (spécialisation Intelligence Artificielle) à l’UQAC.
+            Passionné par les mathématiques et la programmation, je suis prêt à relever de nouveaux défis professionnels !
           </p>
+
 
           <div className="flex flex-wrap gap-3 mt-4 animate-fade-in delay-500">
             <span className="text-green-600 font-semibold">#Full-Stack</span>
             <span className="text-green-600 font-semibold">#ComputerVision</span>
-            <span className="text-green-600 font-semibold">#NoSQL</span>
+            <span className="text-green-600 font-semibold">#SQL</span>
+            <span className="text-green-600 font-semibold">#NOSQL</span>
             <span className="text-green-600 font-semibold">#Django</span>
             <span className="text-green-600 font-semibold">#IA</span>
-            <span className="text-green-600 font-semibold">#Cybersécurité</span>
+            <span className="text-green-600 font-semibold">#Mobile</span>
           </div>
 
           <ul className="list-none mt-4 flex flex-wrap gap-6 text-sm text-gray-800 animate-fade-in-up delay-700">
@@ -45,7 +47,7 @@ export default function Hero() {
           </div>
 
           <a
-            href="/cv-valdes.pdf"
+            href="/assets/cv-valdes.pdf"
             download
             className="bg-green-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition flex items-center gap-2"
           >

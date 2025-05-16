@@ -4,16 +4,35 @@ import { Mail, Send, User, MessageSquareText } from 'lucide-react';
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    setForm({ name: '', email: '', message: '' });
+
+    try {
+      const res = await fetch("https://formspree.io/f/xldbzbgn", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setForm({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError("Une erreur est survenue. Veuillez réessayer.");
+      }
+    } catch (err) {
+      setError("Erreur réseau.");
+    }
   };
 
   return (
@@ -29,6 +48,12 @@ export default function ContactSection() {
           </div>
         )}
 
+        {error && (
+          <div className="mb-6 text-center text-red-600 font-semibold">
+            ❌ {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
             <input
@@ -38,7 +63,7 @@ export default function ContactSection() {
               onChange={handleChange}
               placeholder="Votre nom complet"
               required
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             />
             <User className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>
@@ -51,7 +76,7 @@ export default function ContactSection() {
               onChange={handleChange}
               placeholder="Votre adresse e-mail"
               required
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             />
             <Mail className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>
@@ -64,7 +89,7 @@ export default function ContactSection() {
               placeholder="Votre message"
               required
               rows={5}
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             ></textarea>
             <MessageSquareText className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>

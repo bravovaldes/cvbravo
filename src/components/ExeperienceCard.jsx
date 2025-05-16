@@ -6,15 +6,15 @@ const experiencesGrouped = [
     location: 'Chicoutimi, Canada',
     entries: [
       {
-        title: 'Développeur Frontend',
-        company: 'UQAC',
-        icons: ['react.svg', 'tailwind.png', 'vite.svg'],
+        title: 'Développeur Mobile-Desktop',
+        company: 'SALVATORE',
+        icons: ['react.svg', 'tailwind.png','kotlin.jpg', 'firebase.png'],
         project: null
       },
       {
-        title: 'Werkstudent',
-        company: 'Adesso',
-        icons: ['angular.png', 'k8s.png', 'postgresql.jpg'],
+        title: 'Aide Pedagogique',
+        company: 'UQAC',
+        icons: ['compose.jpeg', 'asp.jpg', 'postgresql.jpg'],
         project: null
       }
     ],
@@ -22,13 +22,13 @@ const experiencesGrouped = [
     expandable: true
   },
   {
-    id: 'smartgeek',
-    location: 'SmartGeek',
+    id: 'Solutech',
+    location: 'Dschang-Cameroun',
     entries: [
       {
-        title: 'Développeur Mobile',
-        company: 'SmartGeek',
-        icons: ['compose.jpeg', 'kotlin.jpg', 'pytorch.png', 'firebase.png'],
+        title: 'Développeur Full-Stack',
+        company: 'Solutech-2019-2022 C#',
+        icons: ['asp.jpg', 'postgresql.jpg','react.svg'],
         project: 'AgriPoule'
       }
     ],

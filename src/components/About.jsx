@@ -27,10 +27,10 @@ export default function About() {
           <ul className="flex flex-wrap justify-center gap-4 text-sm text-green-400">
             <li>#Full-Stack</li>
             <li>#VisionArtificielle</li>
-            <li>#Cybersécurité</li>
-            <li>#JetpackCompose</li>
+            <li>#Mobile</li>
             <li>#NoSQL</li>
-            <li>#Django</li>
+            <li>#NoSQL</li>
+            <li>#ASP.NETL</li>
           </ul>
         </div>
   
