@@ -1,51 +1,26 @@
-import React, { useState } from 'react';
-import { BookOpenText, Calendar, Clock, PencilLine, User, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  BookOpenText,
+  Calendar,
+  Clock,
+  PencilLine,
+  User,
+  X,
+  ThumbsUp,
+  ThumbsDown,
+  Eye
+} from 'lucide-react';
+import axios from 'axios';
 
-const initialBlogs = [
-  {
-    title: 'Comment j’ai appris React en 30 jours',
-    content: 'Dans cet article, je vous partage mon parcours et les ressources que j’ai utilisées pour maîtriser les bases de React...',
-    author: 'Invité anonyme',
-    date: new Date().toLocaleDateString(),
-    readTime: '3 min',
-    views: 12
-  },
-  {
-    title: 'Travailler avec Firebase Auth + Firestore',
-    content: 'Dans ce post, on explore comment intégrer Firebase à une app React et sécuriser les routes publiques/privées...',
-    author: 'bravovaldes',
-    date: new Date().toLocaleDateString(),
-    readTime: '4 min',
-    views: 27
-  }
-];
+const API_URL = 'https://blogapi-qcj8.onrender.com/posts';
 
 export default function BlogSection() {
-  const ITEMS_PER_PAGE = 3;
-
-  const [blogs, setBlogs] = useState(initialBlogs);
+  const ITEMS_PER_PAGE = 4;
+  const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [form, setForm] = useState({ title: '', content: '', author: '' });
   const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({ title: '', content: '', author: '' });
 
-  /* ---------- handlers ---------- */
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newBlog = {
-      ...form,
-      date: new Date().toLocaleDateString() || 'Aujourd’hui',
-      views: Math.floor(Math.random() * 100),
-      readTime: `${2 + Math.floor(form.content.length / 150)} min`
-    };
-    setBlogs([newBlog, ...blogs]);
-    setForm({ title: '', content: '', author: '' });
-    setShowModal(false);
-    setCurrentPage(1); // on revient à la première page
-  };
-
-  /* ---------- pagination ---------- */
   const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
   const indexOfLast = currentPage * ITEMS_PER_PAGE;
   const indexOfFirst = indexOfLast - ITEMS_PER_PAGE;
@@ -53,13 +28,78 @@ export default function BlogSection() {
 
   const goToPage = (page) => setCurrentPage(page);
 
+  const handleLike = async (id) => {
+    const liked = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    if (liked.includes(id)) {
+      alert('Vous avez déjà liké cet article.');
+      return;
+    }
+    try {
+      const res = await axios.put(`${API_URL}/${id}/like`);
+      const updated = blogs.map(post => post.id === id ? res.data : post);
+      setBlogs(updated);
+      localStorage.setItem('likedPosts', JSON.stringify([...liked, id]));
+    } catch (err) {
+      console.error('Erreur lors du like :', err);
+    }
+  };
+
+  const handleDislike = async (id) => {
+    const disliked = JSON.parse(localStorage.getItem('dislikedPosts') || '[]');
+    if (disliked.includes(id)) {
+      alert('Vous avez déjà disliké cet article.');
+      return;
+    }
+    try {
+      const res = await axios.put(`${API_URL}/${id}/dislike`);
+      const updated = blogs.map(post => post.id === id ? res.data : post);
+      setBlogs(updated);
+      localStorage.setItem('dislikedPosts', JSON.stringify([...disliked, id]));
+    } catch (err) {
+      console.error('Erreur lors du dislike :', err);
+    }
+  };
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (form.title.length > 25) {
+      alert('Le titre ne peut pas dépasser 25 caractères.');
+      return;
+    }
+    if (form.author.length > 15) {
+      alert("Le nom d'auteur ne peut pas dépasser 15 caractères.");
+      return;
+    }
+    const newPost = {
+      title: form.title,
+      content: form.content,
+      author: form.author || 'Anonyme',
+    };
+    try {
+      const res = await axios.post(API_URL, newPost);
+      setBlogs([res.data, ...blogs]);
+      setForm({ title: '', content: '', author: '' });
+      setShowModal(false);
+      setCurrentPage(1);
+    } catch (err) {
+      console.error('Erreur lors de la création du post :', err);
+    }
+  };
+
+  useEffect(() => {
+    axios.get(API_URL)
+      .then(res => setBlogs(res.data))
+      .catch(err => console.error('Erreur de chargement:', err));
+  }, []);
+
   return (
     <section className="bg-white text-black py-20 px-6 relative">
-      <h2 className="text-3xl font-bold text-green-600 text-center mb-12 flex items-center justify-center gap-2">
+      <h2 className="text-3xl font-bold text-green-600 text-center mb-8 flex items-center justify-center gap-2">
         <BookOpenText className="w-6 h-6 text-green-500" /> Blog collaboratif
       </h2>
 
-      {/* bouton "nouvel article" */}
       <div className="text-center mb-12">
         <button
           onClick={() => setShowModal(true)}
@@ -69,7 +109,6 @@ export default function BlogSection() {
         </button>
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
           <div className="bg-white text-black w-full max-w-xl rounded-xl shadow-lg p-6 relative animate-fade-in">
@@ -86,7 +125,7 @@ export default function BlogSection() {
               <input
                 type="text"
                 name="title"
-                placeholder="Titre de l’article"
+                placeholder="Titre de l’article (max 25 caractères)"
                 value={form.title}
                 onChange={handleChange}
                 required
@@ -104,7 +143,7 @@ export default function BlogSection() {
               <input
                 type="text"
                 name="author"
-                placeholder="Votre nom ou pseudo (facultatif)"
+                placeholder="Votre nom ou pseudo (facultatif, max 15 caractères)"
                 value={form.author}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -120,33 +159,65 @@ export default function BlogSection() {
         </div>
       )}
 
-      {/* articles affichés pour la page courante */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl w-full mx-auto px-2">
         {currentBlogs.map((blog, index) => (
           <div
             key={index}
-            className="bg-neutral-900 text-white p-5 rounded-xl shadow-lg flex flex-col justify-between hover:shadow-green-400/20 transition"
+            className="bg-neutral-900 text-white p-5 rounded-xl shadow-lg flex flex-col justify-between hover:shadow-green-400/20 transition h-[300px] overflow-hidden"
           >
-            <div>
-              <h4 className="text-xl font-bold text-green-400 mb-2">{blog.title}</h4>
-              <p className="text-sm text-gray-300 mb-4 leading-relaxed">{blog.content}</p>
-            </div>
-            <div className="text-xs text-gray-400 flex justify-between items-center">
-              <div className="flex gap-2 items-center">
-                <User className="w-4 h-4" /> {blog.author || 'Anonyme'}
+            <div className="flex flex-col justify-between h-full">
+              <div>
+                <h4 className="text-lg font-bold text-green-400 mb-2 truncate">
+                  {blog.title}
+                </h4>
+                <p className="text-sm text-gray-300 mb-2 leading-relaxed line-clamp-4 overflow-hidden">
+                  {blog.content}
+                </p>
+
               </div>
-              <div className="flex gap-2 items-center">
-                <Calendar className="w-4 h-4" /> {blog.date}
-              </div>
-              <div className="flex gap-2 items-center">
-                <Clock className="w-4 h-4" /> {blog.readTime}
+              <div>
+                <button
+                  onClick={() => window.location.href = `/blog/${blog.id}`}
+                  className="text-xs text-white bg-green-500 hover:bg-green-600 px-3 py-1 rounded shadow mb-3"
+                >
+                  Voir plus
+                </button>
+
+                <div className="text-xs text-gray-400 flex flex-wrap justify-between items-center gap-y-2">
+                  <div className="flex gap-2 items-center">
+                    <User className="w-4 h-4" />
+                    {blog.author.length > 15 ? blog.author.slice(0, 15) + '...' : blog.author}
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <Calendar className="w-4 h-4" /> {blog.date}
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <Clock className="w-4 h-4" /> {blog.readTime}
+                  </div>
+                  <div className="flex gap-3 items-center">
+                    <button
+                      onClick={() => handleLike(blog.id)}
+                      className="text-xs flex items-center gap-1 text-green-400 hover:text-green-300 transition"
+                    >
+                      <ThumbsUp className="w-4 h-4" /> {blog.likes}
+                    </button>
+                    <button
+                      onClick={() => handleDislike(blog.id)}
+                      className="text-xs flex items-center gap-1 text-red-400 hover:text-red-300 transition"
+                    >
+                      <ThumbsDown className="w-4 h-4" /> {blog.dislikes}
+                    </button>
+                     <div className="text-xs flex items-center gap-1 text-gray-300">
+                      <Eye className="w-4 h-4" /> {blog.views}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ----------- Pagination ----------- */}
       {totalPages > 1 && (
         <div className="mt-14 flex justify-center items-center gap-2 text-sm">
           <button
@@ -160,25 +231,19 @@ export default function BlogSection() {
           >
             Précédent
           </button>
-
-          {[...Array(totalPages)].map((_, i) => {
-            const page = i + 1;
-            const isActive = page === currentPage;
-            return (
-              <button
-                key={page}
-                onClick={() => goToPage(page)}
-                className={`w-9 h-9 rounded-lg border ${
-                  isActive
-                    ? 'bg-green-600 text-white border-green-600'
-                    : 'border-gray-300 text-gray-600 hover:bg-green-100'
-                }`}
-              >
-                {page}
-              </button>
-            );
-          })}
-
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => goToPage(i + 1)}
+              className={`w-9 h-9 rounded-lg border ${
+                currentPage === i + 1
+                  ? 'bg-green-600 text-white border-green-600'
+                  : 'border-gray-300 text-gray-600 hover:bg-green-100'
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
           <button
             onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
             disabled={currentPage === totalPages}
