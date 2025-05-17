@@ -130,7 +130,7 @@ export default function BlogSection() {
                 value={form.title}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="bg-white text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <textarea
                 name="content"
@@ -139,7 +139,7 @@ export default function BlogSection() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="bg-white text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="text"
@@ -147,7 +147,7 @@ export default function BlogSection() {
                 placeholder="Votre nom ou pseudo (facultatif, max 15 caractères)"
                 value={form.author}
                 onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="bg-white text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <button
                 type="submit"
