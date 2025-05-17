@@ -76,7 +76,7 @@ export default function ContactSection() {
               onChange={handleChange}
               placeholder="Votre adresse e-mail"
               required
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
+              className="bg-white text-black w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             />
             <Mail className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>
@@ -89,7 +89,7 @@ export default function ContactSection() {
               placeholder="Votre message"
               required
               rows={5}
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
+              className="bg-white text-black w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             ></textarea>
             <MessageSquareText className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>

@@ -195,7 +195,7 @@ export default function FloatingChat() {
             <input
               type="text"
               placeholder="Votre question..."
-              className="w-full max-w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="bg-white text-black w-full max-w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
