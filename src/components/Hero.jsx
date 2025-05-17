@@ -76,7 +76,7 @@ export default function Hero() {
           </p>
 
           <p className="text-sm text-gray-500">
-            <strong>10 questions</strong> toutes les <strong>10 minutes</strong>.
+            <strong>20 questions</strong> toutes les <strong>5 minutes</strong>.
           </p>
 
           {/* Flèche vers le bouton flottant */}

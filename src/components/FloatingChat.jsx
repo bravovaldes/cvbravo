@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 
-const TOKEN_LIMIT = 10;
-const RESET_DELAY_MINUTES = 10;
+const TOKEN_LIMIT = 20;
+const RESET_DELAY_MINUTES = 5;
 const RESET_DELAY_MS = RESET_DELAY_MINUTES * 60 * 1000;
 
 const suggestions = [
