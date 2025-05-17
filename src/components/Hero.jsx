@@ -61,7 +61,7 @@ export default function Hero() {
 
           <p className="mt-4 text-sm text-gray-600">
             <i className="fas fa-map-marker-alt mr-1" />
-            Chicoutimi, Québec, Canada
+            Drummondville, Québec, Canada
           </p>
         </div>
 

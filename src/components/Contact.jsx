@@ -63,7 +63,7 @@ export default function ContactSection() {
               onChange={handleChange}
               placeholder="Votre nom complet"
               required
-              className="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
+              className="bg-white text-black w-full p-4 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
             />
             <User className="absolute top-4 left-4 text-gray-400 w-5 h-5" />
           </div>

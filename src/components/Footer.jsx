@@ -24,12 +24,12 @@ export default function FooterSection() {
           {/* GitHub */}
           <div className="text-sm text-center md:text-right">
             <a
-              href="https://github.com/bravovalde"
+              href="https://github.com/bravovaldes"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-green-400 hover:underline"
             >
-              <Github className="w-5 h-5" /> Voir le projet sur GitHub
+              <Github className="w-5 h-5" /> GitHub
             </a>
           </div>
         </div>
