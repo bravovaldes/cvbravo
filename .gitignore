@@ -23,5 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 # 🛡️ Fichiers d'environnement (jamais versionnés)
-.env
-.env.*
+
